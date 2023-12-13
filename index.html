@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de C</title>
+    <link rel="icon" type="image/ico" href="https://cdn.iconscout.com/icon/free/png-256/free-sap-3521690-2945134.png">
+
+
+</head>
+
+<body>
+
+    <br>
+    <h2>Contador de caracteres</h2>
+    <hr>
+    <br>
+
+    <table>
+        <tr>
+            <td>
+                <h3>Caracteres: <b id="id_len">0</b>
+                    <h4>Espacios: <b id="id_spa">0</b></h4>
+            </td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>
+                <textarea id="t_area" onkeyup="Contador();" rows="20" cols="90" style="width:98%; height:100%"
+                    wrap="virtual"></textarea>
+            </td>
+            <td>
+                <button onclick="ToUpper()">Pasar todo a MAYUSCÚLAS</button> <br> <br>
+                <button onclick="ToLower()">Pasar todo a minúsculas</button> <br> <br>
+                <button onclick="NoSpace()">Sin espacios</button> <br> <br>
+                <button onclick="NoLeter()">Solo números y espacios</button> <br> <br> <br> <br>
+                <button type="button" onclick="Copiar()"
+                    style="background-color: #008CBA;border: none; color: aliceblue; padding: 15px 32px;">Copiar</button>
+            </td>
+        </tr>
+        <tr>
+            <td><b><i id="id_alerta"  style="color: #22b948; font-style: italic;">...</i></b></td>
+        </tr>
+
+    </table>
+
+</body>
+
+
+<script>
+
+    // ...
+    function Alerta(lv){
+        document.getElementById('id_alerta').innerText = lv ; 
+    }
+
+    //...
+    function NoLeter() {
+        let t_Area = document.getElementById('t_area');
+        // Espacios...
+        let i = 0, n_area = '';
+        while (i < t_Area.value.length) {
+            if (isNaN(t_Area.value[i])) { }
+            else { n_area = n_area + t_Area.value[i]; }
+            i = i + 1;
+        }
+        t_Area.value = n_area;
+        Contador(t_Area);
+        Alerta("... letras retiradas");
+    }
+
+    //...
+    function Copiar() {
+        var enlace = document.getElementById('t_area');
+        var inputFalso = document.createElement('input');
+        inputFalso.setAttribute("value", enlace.value);
+        document.body.appendChild(inputFalso);
+        inputFalso.select();
+        document.execCommand('copy');
+        document.body.removeChild(inputFalso);
+        Alerta("... texto copiado");
+    }
+
+    //...
+    function NoSpace() {
+        let t_Area = document.getElementById('t_area');
+        // Espacios...
+        let i = 0, n_area = '';
+        while (i < t_Area.value.length) {
+            if (t_Area.value[i] == ' ') { }
+            else { n_area = n_area + t_Area.value[i]; }
+            i = i + 1;
+        }
+        t_Area.value = n_area;
+        Contador(t_Area);
+        Alerta("... espacios retirados");
+    }
+
+    //...
+    function ToUpper() {
+        let t_Area = document.getElementById('t_area');
+        t_Area.value = t_Area.value.toUpperCase();
+        Alerta("... se pasó a mayúsculas");
+    }
+    //...
+    function ToLower() {
+        let t_Area = document.getElementById('t_area');
+        t_Area.value = t_Area.value.toLowerCase();
+        Alerta("... se pasó a minúsculas");
+    }
+
+    // ....
+    function Contador() {
+        let t_area = document.getElementById('t_area').value;
+        // Total de caracteres...
+        document.getElementById('id_len').innerText = t_area.length;
+        // Espacios...
+        let i = 0, c = 0;
+        while (i < t_area.length) {
+            if (t_area[i] == ' ') {
+                c = c + 1.
+            }
+            i = i + 1;
+        }
+        document.getElementById('id_spa').innerText = c;
+    }
+
+</script>
+
+</html>
