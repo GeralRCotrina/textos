@@ -65,30 +65,35 @@
         let t_Area1 = document.getElementById('t_area');
         let t_Area2 = document.getElementById('t_area2');
         // Comparación básica
-        if (t_Area1.value == t_Area2.value) {
-            Alerta2("... Textos iguales.");
+        if (t_Area2.value == '') {
+            Alerta2("... Comparar");
         }
-        else {
-            let i = 0, n_area = '', iter = true;
-            //while (i < t_Area1.value.length) {
-            while (iter) {
-                if (t_Area1.value[i] == t_Area2.value[i]) {
-                    n_area = '' + n_area + '-';
-                }
-                else {
-                    if (t_Area2.value[i] == undefined) {
-                        n_area = '' + n_area + '_';
-                    } else {
-                        n_area = '' + n_area + '' + t_Area2.value[i] + '';
+        else{
+            if (t_Area1.value == t_Area2.value) {
+                Alerta2("... Textos iguales.");
+            }
+            else {
+                let i = 0, n_area = '', iter = true;
+                //while (i < t_Area1.value.length) {
+                while (iter) {
+                    if (t_Area1.value[i] == t_Area2.value[i]) {
+                        n_area = '' + n_area + '-';
+                    }
+                    else {
+                        if (t_Area2.value[i] == undefined) {
+                            n_area = '' + n_area + '_';
+                        } else {
+                            n_area = '' + n_area + '' + t_Area2.value[i] + '';
+                        }
+                    }
+                    i = i + 1;
+                    if (t_Area1.value[i] == undefined && t_Area2.value[i] == undefined) {
+                        iter = false;
                     }
                 }
-                i = i + 1;
-                if (t_Area1.value[i] == undefined && t_Area2.value[i] == undefined) {
-                    iter = false;
-                }
+                n_area = 'ERROR: ' + n_area + '';
+                Alerta2(n_area);
             }
-            n_area = 'ERROR: ' + n_area + '';
-            Alerta2(n_area);
         }
     }
 
