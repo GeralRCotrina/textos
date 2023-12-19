@@ -28,20 +28,29 @@
 
         <tr>
             <td>
-                <textarea id="t_area" onkeyup="Contador();" rows="20" cols="90" style="width:98%; height:100%"
+                <b><i id="id_alerta" style="color: #22b948; font-style: italic;">...</i></b>
+                <textarea id="t_area" onkeyup="Contador();" rows="15" cols="90" style="width:98%; height:100%"
                     wrap="virtual"></textarea>
             </td>
             <td>
                 <button onclick="ToUpper()">Pasar todo a MAYUSCÚLAS</button> <br> <br>
                 <button onclick="ToLower()">Pasar todo a minúsculas</button> <br> <br>
                 <button onclick="NoSpace()">Sin espacios</button> <br> <br>
-                <button onclick="NoLeter()">Solo números y espacios</button> <br> <br> <br> <br>
+                <button onclick="NoLeter()">Solo números y espacios</button> <br> <br> <br>
                 <button type="button" onclick="Copiar()"
                     style="background-color: #008CBA;border: none; color: aliceblue; padding: 15px 32px;">Copiar</button>
             </td>
         </tr>
-        <tr>
+        <!--tr>
             <td><b><i id="id_alerta"  style="color: #22b948; font-style: italic;">...</i></b></td>
+        </tr-->
+
+        <tr>
+            <td>
+                <b><i id="id_alerta2" style="color: #519ce2; font-style: italic;">... para comparar textos</i></b>
+                <textarea id="t_area2" onkeyup="Comparar();" rows="10" cols="90" style="width:98%; height:100%"
+                    wrap="virtual"></textarea>
+            </td>
         </tr>
 
     </table>
@@ -52,8 +61,45 @@
 <script>
 
     // ...
-    function Alerta(lv){
-        document.getElementById('id_alerta').innerText = lv ; 
+    function Comparar() {
+        let t_Area1 = document.getElementById('t_area');
+        let t_Area2 = document.getElementById('t_area2');
+        // Comparación básica
+        if (t_Area1.value == t_Area2.value) {
+            Alerta2("... Textos iguales.");
+        }
+        else {
+            let i = 0, n_area = '', iter = true;
+            //while (i < t_Area1.value.length) {
+            while (iter) {
+                if (t_Area1.value[i] == t_Area2.value[i]) {
+                    n_area = '' + n_area + '-';
+                }
+                else {
+                    if (t_Area2.value[i] == undefined) {
+                        n_area = '' + n_area + '_';
+                    } else {
+                        n_area = '' + n_area + '' + t_Area2.value[i] + '';
+                    }
+                }
+                i = i + 1;
+                if (t_Area1.value[i] == undefined && t_Area2.value[i] == undefined) {
+                    iter = false;
+                }
+            }
+            n_area = 'ERROR: ' + n_area + '';
+            Alerta2(n_area);
+        }
+    }
+
+    // ...
+    function Alerta(lv) {
+        document.getElementById('id_alerta').innerText = lv;
+    }
+
+    // ...
+    function Alerta2(lv) {
+        document.getElementById('id_alerta2').innerText = lv;
     }
 
     //...
